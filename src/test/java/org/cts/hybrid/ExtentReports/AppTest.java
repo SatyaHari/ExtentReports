@@ -14,7 +14,7 @@ public class AppTest {
 
 	@Test(priority = 0, description = "Invalid Login Scenario with wrong username and password.", dataProvider = "browser-provider")
 	public void invalidLoginTest_InvalidUserNameInvalidPasswordGOINGFORWARD(String category) {
-		AssertionLibrary.assertEquals(category, category, "String Matches" + category);
+		AssertionLibrary.assertEquals(category, "TABLETS", "String Matches" + category);
 	}
 
 	@AfterMethod
