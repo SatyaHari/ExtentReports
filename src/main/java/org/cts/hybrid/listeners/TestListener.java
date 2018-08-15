@@ -33,7 +33,7 @@ public class TestListener implements ITestListener {
 
 	public void onTestStart(ITestResult iTestResult) {
 		logger.info("I am in onTestStart method " + getTestMethodName(iTestResult) + " start");
-		ExtentTestManager.startTest(iTestResult.getMethod().getMethodName(), "");
+		ExtentTestManager.startTest(iTestResult.getMethod().getMethodName(), iTestResult.getMethod().getDescription());
 	}
 
 	public void onTestSuccess(ITestResult iTestResult) {

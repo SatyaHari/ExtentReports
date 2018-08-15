@@ -7,6 +7,9 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
 public class ExtentTestManager {
+	
+	private static	int counter=0;
+	
 
 	private static Map<Integer, ExtentTest> extentTestMap = new HashMap<Integer, ExtentTest>();
 	private static ExtentReports extent = ExtentManager.getInstance();
@@ -20,9 +23,9 @@ public class ExtentTestManager {
 	}
 
 	public static synchronized ExtentTest startTest(String testName, String desc) {
-		ExtentTest test = extent.createTest(testName, desc);
+		counter++;
+		ExtentTest test = extent.createTest(testName+"_"+String.valueOf(counter), desc);
 		extentTestMap.put(getCurrentThread(), test);
-		System.out.println("TEST STarted " );
 		return test;
 	}
 	
