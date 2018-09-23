@@ -3,6 +3,7 @@ package org.cts.hybrid.ExtentReports;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -17,6 +18,7 @@ public class ExtentManager {
 	private static final String EXTENT_REPORTS_FOLDER = WORKING_DIR + "/AutomationReports";
 	private static final String REPORT_NAME = "ExtentReport_" + TIME_STAMP + ".html";
 	private static final String EXTENT_REPORTS_PATH = EXTENT_REPORTS_FOLDER + "/" + REPORT_NAME;
+	private static Logger logger = Logger.getLogger(ExtentManager.class.getName());
 
 	public static ExtentReports getInstance() {
 		if (extent == null) {
@@ -30,7 +32,7 @@ public class ExtentManager {
 		File file = new File(EXTENT_REPORTS_FOLDER);
 		if (!file.exists()) {
 			if (!file.mkdir()) {
-				System.out.println("Failed to create directory!");
+				logger.warning("Failed to create directory!");
 			}
 		}
 	}
@@ -46,9 +48,6 @@ public class ExtentManager {
 		htmlReporter.setAppendExisting(true);
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
-
-		// System.out.println("CREATE REPORT INSTANCE!" + filePath +
-		// extent.getStartedReporters());
 		return extent;
 	}
 }
