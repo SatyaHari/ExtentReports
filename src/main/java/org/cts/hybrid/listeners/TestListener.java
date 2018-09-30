@@ -24,8 +24,8 @@ public class TestListener implements ITestListener {
 
 	@Override
 	public void onFinish(ITestContext iTestContext) {
-		ExtentTestManager.endTest();
 		ExtentManager.getInstance().flush();
+		ExtentTestManager.endTest();
 	}
 
 	@Override
