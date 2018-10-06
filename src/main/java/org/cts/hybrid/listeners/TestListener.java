@@ -1,5 +1,7 @@
 package org.cts.hybrid.listeners;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.cts.hybrid.ExtentReports.ExtentManager;
@@ -13,17 +15,27 @@ import com.aventstack.extentreports.Status;
 public class TestListener implements ITestListener {
 
 	private static Logger logger = Logger.getLogger(TestListener.class.getName());
-	
+	public static Map<String, String> allParameters = new HashMap<String, String>();
+	public static Map<String, String> suiteParameters = new HashMap<String, String>();
+	public static Map<String, String> localParameters = new HashMap<String, String>();
+
 	private static String getTestMethodName(ITestResult iTestResult) {
 		return iTestResult.getMethod().getConstructorOrMethod().getName();
 	}
 
 	@Override
 	public void onStart(ITestContext iTestContext) {
+		allParameters = iTestContext.getSuite().getXmlSuite().getAllParameters();
+		System.out.println(allParameters);
+		suiteParameters = iTestContext.getSuite().getXmlSuite().getParameters();
+		System.out.println(suiteParameters);
+		localParameters = iTestContext.getCurrentXmlTest().getLocalParameters();
+		System.out.println(localParameters);
 	}
 
 	@Override
 	public void onFinish(ITestContext iTestContext) {
+
 		ExtentManager.getInstance().flush();
 		ExtentTestManager.endTest();
 	}
@@ -35,7 +47,7 @@ public class TestListener implements ITestListener {
 
 	@Override
 	public void onTestSuccess(ITestResult iTestResult) {
-		//ExtentTestManager.getTest().log(Status.PASS, "Test passed.");
+		// ExtentTestManager.getTest().log(Status.PASS, "Test passed.");
 	}
 
 	@Override
