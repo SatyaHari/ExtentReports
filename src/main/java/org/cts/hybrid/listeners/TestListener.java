@@ -26,11 +26,8 @@ public class TestListener implements ITestListener {
 	@Override
 	public void onStart(ITestContext iTestContext) {
 		allParameters = iTestContext.getSuite().getXmlSuite().getAllParameters();
-		System.out.println(allParameters);
 		suiteParameters = iTestContext.getSuite().getXmlSuite().getParameters();
-		System.out.println(suiteParameters);
 		localParameters = iTestContext.getCurrentXmlTest().getLocalParameters();
-		System.out.println(localParameters);
 	}
 
 	@Override
