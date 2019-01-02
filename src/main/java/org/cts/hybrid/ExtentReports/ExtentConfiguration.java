@@ -10,7 +10,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-public class ExtentManager {
+public class ExtentConfiguration {
 
 	private static ExtentReports extent;
 	public static final String WORKING_DIR = System.getProperty("user.dir");
@@ -18,7 +18,7 @@ public class ExtentManager {
 	private static final String EXTENT_REPORTS_FOLDER = WORKING_DIR + "/AutomationReports";
 	private static final String REPORT_NAME = "ExtentReport_" + TIME_STAMP + ".html";
 	private static final String EXTENT_REPORTS_PATH = EXTENT_REPORTS_FOLDER + "/" + REPORT_NAME;
-	private static Logger logger = Logger.getLogger(ExtentManager.class.getName());
+	private static Logger logger = Logger.getLogger(ExtentConfiguration.class.getName());
 
 	public static ExtentReports getInstance() {
 		if (extent == null) {

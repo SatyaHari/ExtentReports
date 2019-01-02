@@ -11,7 +11,7 @@ public class ExtentTestManager {
 	private static int counter = 0;
 
 	private static Map<Integer, ExtentTest> extentTestMap = new HashMap<Integer, ExtentTest>();
-	private static ExtentReports extent = ExtentManager.getInstance();
+	private static ExtentReports extent = ExtentConfiguration.getInstance();
 
 	public static synchronized ExtentTest getTest() {
 		return extentTestMap.get(getCurrentThread());

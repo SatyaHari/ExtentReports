@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import org.cts.hybrid.ExtentReports.ExtentManager;
+import org.cts.hybrid.ExtentReports.ExtentConfiguration;
 import org.cts.hybrid.ExtentReports.ExtentTestManager;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -33,7 +33,7 @@ public class TestListener implements ITestListener {
 	@Override
 	public void onFinish(ITestContext iTestContext) {
 
-		ExtentManager.getInstance().flush();
+		ExtentConfiguration.getInstance().flush();
 		ExtentTestManager.endTest();
 	}
 
