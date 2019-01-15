@@ -1,4 +1,4 @@
-package org.cts.hybrid.ExtentReports;
+package org.cts.hybrid.extentreports;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -17,8 +17,12 @@ public class ExtentConfiguration {
 	private static final String TIME_STAMP = new SimpleDateFormat("dd.MM.yyyy.HH.mm").format(new Date());
 	private static final String EXTENT_REPORTS_FOLDER = WORKING_DIR + "/AutomationReports";
 	private static final String REPORT_NAME = "ExtentReport_" + TIME_STAMP + ".html";
-	private static final String EXTENT_REPORTS_PATH = EXTENT_REPORTS_FOLDER + "/" + REPORT_NAME;
+	private static final String EXTENT_REPORTS_PATH = EXTENT_REPORTS_FOLDER + File.separator + REPORT_NAME;
 	private static Logger logger = Logger.getLogger(ExtentConfiguration.class.getName());
+
+	private ExtentConfiguration() {
+
+	}
 
 	public static ExtentReports getInstance() {
 		if (extent == null) {
@@ -30,10 +34,8 @@ public class ExtentConfiguration {
 
 	private static void createReportsFolder() {
 		File file = new File(EXTENT_REPORTS_FOLDER);
-		if (!file.exists()) {
-			if (!file.mkdir()) {
-				logger.warning("Failed to create directory!");
-			}
+		if (!file.exists() && !file.mkdir()) {
+			logger.warning("Failed to create directory!");
 		}
 	}
 

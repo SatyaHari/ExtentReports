@@ -1,4 +1,4 @@
-package org.cts.hybrid.ExtentReports;
+package org.cts.hybrid.extentreports;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,9 +8,13 @@ import com.aventstack.extentreports.ExtentTest;
 
 public class ExtentTestManager {
 
+	private ExtentTestManager() {
+
+	}
+
 	private static int counter = 0;
 
-	private static Map<Integer, ExtentTest> extentTestMap = new HashMap<Integer, ExtentTest>();
+	private static Map<Integer, ExtentTest> extentTestMap = new HashMap<>();
 	private static ExtentReports extent = ExtentConfiguration.getInstance();
 
 	public static synchronized ExtentTest getTest() {
@@ -23,14 +27,13 @@ public class ExtentTestManager {
 
 	public static synchronized ExtentTest startTest(String testName, final String desc) {
 		counter++;
-		ExtentTest test = extent.createTest(testName + "_" + String.valueOf(counter), desc);
+		ExtentTest test = extent.createTest(testName + "_" + counter, desc);
 		extentTestMap.put(getCurrentThread(), test);
 		return test;
 	}
 
 	private static synchronized int getCurrentThread() {
-		int threadValue = (int) (Thread.currentThread().getId());
-		return threadValue;
+		return (int) (Thread.currentThread().getId());
 	}
 
 }
