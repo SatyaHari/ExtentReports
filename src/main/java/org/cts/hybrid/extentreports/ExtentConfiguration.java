@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
 
+import org.cts.hybrid.configprovider.ConfigProvider;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.ExtentKlovReporter;
@@ -45,22 +47,21 @@ public class ExtentConfiguration {
 		htmlReporter.config().setDocumentTitle(REPORT_NAME);
 		htmlReporter.config().setEncoding("utf-8");
 		htmlReporter.config().setReportName("Execution-Status");
-		// htmlReporter.setAppendExisting(true);
 		return htmlReporter;
 	}
 
 	private static ExtentKlovReporter initKlovReporter() {
-		ExtentKlovReporter klovReporter = new ExtentKlovReporter("OneFramework", "BNYM");
-		klovReporter.initMongoDbConnection("localhost", 27017);
-		klovReporter.setReportName("Extent-klov-report");
-		klovReporter.initKlovServerConnection("http://localhost");
+		ExtentKlovReporter klovReporter = new ExtentKlovReporter(ConfigProvider.getAsString("project.name"), ConfigProvider.getAsString("report.name"));
+		klovReporter.initMongoDbConnection(ConfigProvider.getAsString("mongodb.host"), ConfigProvider.getAsInt("mongodb.port"));
+		klovReporter.initKlovServerConnection(ConfigProvider.getAsString("klov.host"));
 		return klovReporter;
 	}
 
 	private static ExtentReports attachReporters() {
 		extent = new ExtentReports();
-		extent.attachReporter(initKlovReporter());
 		extent.attachReporter(initHtmlReporter());
+		if (ConfigProvider.getAsString("KlovReport").equalsIgnoreCase("true") || ConfigProvider.getAsString("KlovReport").equalsIgnoreCase("yes"))
+			extent.attachReporter(initKlovReporter());
 		return extent;
 	}
 

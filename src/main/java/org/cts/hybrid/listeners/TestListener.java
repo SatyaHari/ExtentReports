@@ -44,7 +44,6 @@ public class TestListener implements ITestListener {
 
 	@Override
 	public void onFinish(ITestContext iTestContext) {
-
 		ExtentConfiguration.getInstance().flush();
 		ExtentTestManager.endTest();
 	}
@@ -56,7 +55,7 @@ public class TestListener implements ITestListener {
 
 	@Override
 	public void onTestSuccess(ITestResult iTestResult) {
-		logger.info(iTestResult.getName() + " test method passed successfully!!");
+		logger.info(iTestResult.getName() + " passed successfully!!");
 	}
 
 	@Override
