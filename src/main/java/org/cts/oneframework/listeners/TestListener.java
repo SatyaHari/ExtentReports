@@ -1,11 +1,11 @@
-package org.cts.hybrid.listeners;
+package org.cts.oneframework.listeners;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import org.cts.hybrid.extentreports.ExtentConfiguration;
-import org.cts.hybrid.extentreports.ExtentTestManager;
+import org.cts.oneframework.extentreports.ExtentConfiguration;
+import org.cts.oneframework.extentreports.ExtentTestManager;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -61,12 +61,14 @@ public class TestListener implements ITestListener {
 	@Override
 	public void onTestFailure(ITestResult iTestResult) {
 		logger.warning(getTestMethodName(iTestResult) + " failed");
-		ExtentTestManager.getTest().log(Status.FAIL, "Test Step Failed: " + iTestResult.getThrowable());
+		if (ExtentTestManager.getTest() != null)
+			ExtentTestManager.getTest().log(Status.FAIL, "Test Step Failed: " + iTestResult.getThrowable());
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult iTestResult) {
-		ExtentTestManager.getTest().log(Status.SKIP, iTestResult.getName() + " execution got skipped.");
+		if (ExtentTestManager.getTest() != null)
+			ExtentTestManager.getTest().log(Status.SKIP, iTestResult.getName() + " execution got skipped.");
 	}
 
 	@Override

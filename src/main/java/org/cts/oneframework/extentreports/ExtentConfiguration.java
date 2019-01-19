@@ -1,11 +1,12 @@
-package org.cts.hybrid.extentreports;
+package org.cts.oneframework.extentreports;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
 
-import org.cts.hybrid.configprovider.ConfigProvider;
+import org.cts.oneframework.configprovider.ConfigProvider;
+import org.cts.oneframework.configprovider.exceptions.PropertyFileNotFoundException;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -58,9 +59,15 @@ public class ExtentConfiguration {
 	}
 
 	private static ExtentReports attachReporters() {
+		String klovReporterRequired = null;
 		extent = new ExtentReports();
 		extent.attachReporter(initHtmlReporter());
-		if (ConfigProvider.getAsString("KlovReport").equalsIgnoreCase("true") || ConfigProvider.getAsString("KlovReport").equalsIgnoreCase("yes"))
+		try {
+			klovReporterRequired = ConfigProvider.getAsString("KlovReport");
+		} catch (PropertyFileNotFoundException e) {
+			return extent;
+		}
+		if (klovReporterRequired != null && (klovReporterRequired.equalsIgnoreCase("true") || klovReporterRequired.equalsIgnoreCase("yes")))
 			extent.attachReporter(initKlovReporter());
 		return extent;
 	}

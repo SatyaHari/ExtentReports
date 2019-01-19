@@ -3,7 +3,7 @@ package tests;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Listeners(org.cts.hybrid.listeners.TestListener.class)
+@Listeners(org.cts.oneframework.listeners.TestListener.class)
 public class VerifyExtentReportIsGettingGenerated {
 
 	@Test
