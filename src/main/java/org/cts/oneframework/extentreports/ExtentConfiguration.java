@@ -53,7 +53,6 @@ public class ExtentConfiguration {
 		htmlReporter.config().setJS("js-string");
 		htmlReporter.config().setProtocol(Protocol.HTTPS);
 		htmlReporter.config().setTimeStampFormat("MMM dd, yyyy HH:mm:ss");
-		htmlReporter.config().setAutoCreateRelativePathMedia(true);
 		return htmlReporter;
 	}
 
