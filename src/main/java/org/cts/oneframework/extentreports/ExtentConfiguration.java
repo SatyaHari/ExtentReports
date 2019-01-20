@@ -11,6 +11,7 @@ import org.cts.oneframework.configprovider.exceptions.PropertyFileNotFoundExcept
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.ExtentKlovReporter;
+import com.aventstack.extentreports.reporter.configuration.Protocol;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class ExtentConfiguration {
@@ -48,6 +49,11 @@ public class ExtentConfiguration {
 		htmlReporter.config().setDocumentTitle(REPORT_NAME);
 		htmlReporter.config().setEncoding("utf-8");
 		htmlReporter.config().setReportName("Execution-Status");
+		htmlReporter.config().setCSS("css-string");
+		htmlReporter.config().setJS("js-string");
+		htmlReporter.config().setProtocol(Protocol.HTTPS);
+		htmlReporter.config().setTimeStampFormat("MMM dd, yyyy HH:mm:ss");
+		htmlReporter.config().setAutoCreateRelativePathMedia(true);
 		return htmlReporter;
 	}
 
