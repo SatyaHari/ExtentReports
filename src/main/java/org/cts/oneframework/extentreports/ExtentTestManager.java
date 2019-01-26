@@ -22,7 +22,7 @@ public class ExtentTestManager {
 
 	public static synchronized ExtentTest startTest(String testName, final String desc) {
 		extent = ExtentConfiguration.getInstance();
-		extentTest.set(extent.createTest(testName + Thread.currentThread().getId(), desc));
+		extentTest.set(extent.createTest(testName + "_" + Thread.currentThread().getId(), desc));
 		return extentTest.get();
 	}
 }
