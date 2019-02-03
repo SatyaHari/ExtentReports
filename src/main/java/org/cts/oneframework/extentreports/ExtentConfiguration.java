@@ -25,7 +25,6 @@ public class ExtentConfiguration {
 	private static Logger logger = Logger.getLogger(ExtentConfiguration.class.getName());
 
 	private ExtentConfiguration() {
-
 	}
 
 	public static ExtentReports getInstance() {
